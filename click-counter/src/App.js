@@ -32,7 +32,7 @@ function App() {
       >
         Decrement counter
       </button>
-      <p>{ errorMessage }</p>
+      <p dataTest="error-message">{errorMessage}</p>
     </div>
   );
 }
