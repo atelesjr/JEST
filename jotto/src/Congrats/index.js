@@ -11,7 +11,10 @@ const Congrats = (props) => {
     return (
         props.success 
         ? (
-            <div dataTest="congrats">
+            <div 
+                dataTest="congrats"
+                className="alert alert-success"
+            >
                 <span dataTest="congrats-message">
                     Congratulations! You guessed the word!
                 </span>

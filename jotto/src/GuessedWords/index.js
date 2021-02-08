@@ -11,7 +11,7 @@ const GuessedWords = (props) => {
     
     if(props.guessedWords?.length === 0) {
         contents = (
-            <span dataTest="guess-instructions">
+            <span dataTest="guess-instructions" >
                 Try to guess the secret word!
             </span>
         )
@@ -25,8 +25,8 @@ const GuessedWords = (props) => {
 
         contents = (
             <div dataTest="guessed-words">
-                <table>
-                    <thead>
+                <table className="table table-sm">
+                    <thead className="thead-light">
                         <tr>
                             <th>Guess</th>
                             <th>Maatching Letters</th>
