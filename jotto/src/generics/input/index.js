@@ -8,13 +8,13 @@ class Input extends Component {
         : (
             <form className="form-inline">
                 <input 
-                    dataTest="input-box"
+                    datatest="input-box"
                     className="mb-2 mx-sm-3"
                     type="text"
                     placeholder="enter guess"
                 />
                 <button
-                    dataTest="submit-box"
+                    datatest="submit-box"
                     className="btn btn-primary mb-2"
                     type="submit"
                 >
@@ -23,7 +23,7 @@ class Input extends Component {
             </form>
         )
         return (
-            <div dataTest="component-input">
+            <div datatest="component-input">
                 { contents }
             </div>
         )

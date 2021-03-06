@@ -1,4 +1,4 @@
-import { GUESS_WORD } from '../actions'
+//import { GUESS_WORD } from '../actions'
 
 const secretWord = ( state = null , action ) => {
     return state

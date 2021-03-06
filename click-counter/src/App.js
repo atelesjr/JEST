@@ -15,24 +15,24 @@ function App() {
   }, [count])
 
   return (
-    <div dataTest="component-app" className="App">
-      <h1 dataTest="counter-display">
-        Counter:  <span dataTest="count">{count}</span>
+    <div datatest="component-app" className="App">
+      <h1 datatest="counter-display">
+        Counter:  <span datatest="count">{count}</span>
       </h1>
       <button 
-        dataTest="increment-button"
+        datatest="increment-button"
         onClick={ () => setCount(count + 1)}
       >
         Increment counter
       </button>
 
       <button 
-        dataTest="decrement-button"
+        datatest="decrement-button"
         onClick={ () => setCount(count - 1)}
       >
         Decrement counter
       </button>
-      <p dataTest="error-message">{errorMessage}</p>
+      <p datatest="error-message">{errorMessage}</p>
     </div>
   );
 }

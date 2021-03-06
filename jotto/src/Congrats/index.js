@@ -12,15 +12,15 @@ const Congrats = (props) => {
         props.success 
         ? (
             <div 
-                dataTest="congrats"
+                datatest="congrats"
                 className="alert alert-success"
             >
-                <span dataTest="congrats-message">
+                <span datatest="congrats-message">
                     Congratulations! You guessed the word!
                 </span>
             </div>
         ): (
-            <div dataTest="congrats" />
+            <div datatest="congrats" />
         )
     )
 }

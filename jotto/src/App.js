@@ -9,7 +9,7 @@ import GuessedWords from './GuessedWords';
 class App extends Component {
   render(){
     return(
-      <div dataTest="component-app" className="container">
+      <div datatest="component-app" className="container">
         <h1>Jotto</h1>
         <Congrats success={ true } />
         <GuessedWords guessedWords={[

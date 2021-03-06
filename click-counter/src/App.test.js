@@ -13,7 +13,7 @@ Enzyme.configure({ adapter: new Adapter()})
 const setup = () => shallow(<App />);
 
 const findByTestAttr = (wrapper, value) =>{
-  return wrapper.find(`[dataTest='${value}']`)
+  return wrapper.find(`[datatest='${value}']`)
 }
 
 test('renders without error', () => {

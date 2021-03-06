@@ -17,7 +17,8 @@ export const storeFactory = (initialState) => {
 }
 
 export const findByTestAttr = (wrapper, value) => {
-    return wrapper.find(`[dataTest='${value}']`)
+    return wrapper.find(`[datatest='${value}']`)
+    
 }
 
 export const checkProps = (component, props) => {
