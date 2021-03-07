@@ -1,10 +1,36 @@
-import { correctGuess, CORRECT_GUESS } from '../index'
+import moxios from 'moxios'
+import { storeFactory } from '../../../../test/testUtils'
+import { getSecretWord } from '../index'
 
-describe('correctGuess', () => {
-     test('returns an action with type `CORRECT_GUESS`', () => {
-    //     const action = correctGuess()
-    //     //.toBe can't be used to compare objects objects or multable data types
-    //     expect(action).toEqual({ type: CORRECT_GUESS })
-    });
+describe('getSecretWord action creator', () => {
+    beforeEach(() => {
+        moxios.install()
+    })
+
+    afterEach(() => {
+        moxios.uninstall()
+    })
+
+    test('adds response word to state', () => {
+        const secretWord = 'party';
+        const store = storeFactory()
+
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent()
+
+            request.respondWith({
+                status: 200,
+                response: secretWord
+            })
+        })
+
+        return store.dispatch(getSecretWord())
+        .then( () =>{
+            const newState = store.getState()
+            expect(newState.secretWord).toBe(secretWord)
+        })
+
+        
+    })
     
-});
+})
