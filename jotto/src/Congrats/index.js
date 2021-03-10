@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 /**
- * @function Congrats
+ * @function 
  * @returns {JSX.Element}
  */
 
@@ -25,8 +24,5 @@ const Congrats = (props) => {
     )
 }
 
-Congrats.propTypes = {
-    success: PropTypes.bool.isRequired,
-}
 
 export default Congrats
