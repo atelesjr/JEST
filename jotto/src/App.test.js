@@ -1,25 +1,47 @@
-import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+ import React from 'react'
+import { shallow } from 'enzyme'
 
+import { storeFactory } from '../test/testUtils'
 import App from './App';
 
-Enzyme.configure({ adapter: new Adapter()})
+const setup = (state={}) => {
+  const store = storeFactory(state)
+  const wrapper = shallow(<App store={store} />).dive().dive()
 
-/**
- * @function setup
- * @returns { ShallowWrapper}
- */
-const setup = () => shallow(<App />);
-
-const findByTestAttr = (wrapper, value) =>{
-  return wrapper.find(`[datatest='${value}']`)
+  return wrapper
 }
 
-test('renders without error', () => {
-  const wrapper = setup()
-  //console.log(wrapper.debug())
-  const appComponnet = findByTestAttr(wrapper, 'component-app')
-  expect(appComponnet.length).toBe(1)
 
+describe('redux properties', () => {
+  test('has access to success state', () => {
+    const success = true
+    const wrapper = setup({ success })
+    const successProp = wrapper.instance().props.success
+    expect(successProp).toBe(success)
+    
+  });
+
+  test('has access to secretWord state', () => {
+    const secretWord = 'party'
+    const wrapper = setup({ secretWord })
+    const secretWordProp = wrapper.instance().props.secretWord
+    expect(secretWordProp).toBe(secretWordProp)
+    
+  });
+
+  test('has access to guessWord state', () => {
+    const guessedWords = [{ guessedWord: 'train', letterMatchCount: 3 }]
+    const wrapper = setup({ guessedWords })
+    const guestdWordsProp = wrapper.instance().props.guessedWords
+    expect(guestdWordsProp).toEqual(guessedWords)
+  });
+
+  // test('getSecretWord action creator is a function on the props', () => {
+  //   const wrapper = setup()
+  //   const getSecretWorldProp = wrapper.instance().props.getSecretWord
+  //   expect(getSecretWorldProp).toBeInstanceOf(Function)
+  // });
+
+
+  
 });

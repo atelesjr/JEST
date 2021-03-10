@@ -12,6 +12,7 @@ import { middlewares } from '../src/redux/store'
 */
 
 export const storeFactory = (initialState) => {
+    //console.log('initialState', initialState)
     const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
     return createStoreWithMiddleware(rootReducer, initialState)
 }
