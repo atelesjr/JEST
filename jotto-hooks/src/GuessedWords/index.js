@@ -1,5 +1,5 @@
 
-const GuessedWords = ({guessedWords}) => {
+const GuessedWords = ({ guessedWords }) => {
     let contents
 
     const guessedWordsRows = guessedWords.map((word, i) => (
