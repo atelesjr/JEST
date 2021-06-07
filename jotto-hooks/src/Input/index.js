@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Input({ success, secretWorld })  {
+function Input({ success, secretWord })  {
     const [ currentGuess, setCurrentGuess ] = useState('')
 
     if (success) return <div data-test="input" /> 

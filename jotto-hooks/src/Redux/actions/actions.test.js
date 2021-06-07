@@ -11,7 +11,7 @@ describe('invalid word guessed', () => {
     });
 
 
-    test('secretWord is returned', () => {
+    test('secretWord is returned', async () => {
         moxios.wait(() => {
             const request = moxios.requests.mostRecent()
             request.respondWith( {
@@ -20,9 +20,10 @@ describe('invalid word guessed', () => {
             })
         })
 
-        return getSecretWord().then((secretWord) => {
-            expect(secretWord).toBe('party')
-        })
+        const mocksetSecretWord = jest.fn()
+        await getSecretWord(mocksetSecretWord)
+        expect(mocksetSecretWord).toHaveBeenCalledWith('party')
+
     })  
 
 })
