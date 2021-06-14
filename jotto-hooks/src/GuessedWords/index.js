@@ -1,6 +1,10 @@
+import { useContext } from 'react'
+import languageContext from '../contexts/language'
+import getStringByLanguage from '../helpers/strings'
 
 const GuessedWords = ({ guessedWords }) => {
     let contents
+    const language = useContext(languageContext)
 
     const guessedWordsRows = guessedWords.map((word, i) => (
         <tr data-test="guessed-word" key={i}>
@@ -12,13 +16,13 @@ const GuessedWords = ({ guessedWords }) => {
     if(guessedWords.length === 0){
         contents = (
             <span data-test="guess-instructions">
-                Try to guess the sercet word!
+                { getStringByLanguage(language, 'guessPrompt') }
             </span>
         )
     } else {
         contents = (
             <div data-test="guessed-words">
-                <h3>Guessed Words</h3>
+                <h3>{ getStringByLanguage(language, 'guessColumnHeader') }</h3>
                 <table className="table table-sm">
                     <thead className="thead-light">
                         <tr>

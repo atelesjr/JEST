@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import languageContext from '../contexts/language'
+import getStringByLanguage from '../helpers/strings'
 
 function Input({ success, secretWord })  {
+    const language = useContext(languageContext)
     const [ currentGuess, setCurrentGuess ] = useState('')
 
     if (success) return <div data-test="input" /> 
@@ -12,7 +15,7 @@ function Input({ success, secretWord })  {
                     data-test="input-box"
                     className="mb-2 mx sm-3"
                     type="text"
-                    placeholder="enter guess"
+                    placeholder={getStringByLanguage(language, 'guessInputPlaceholder')}
                     value={ currentGuess }
                     onChange={(e) => setCurrentGuess(e.target.value)}
                 ></input>
@@ -24,7 +27,7 @@ function Input({ success, secretWord })  {
                     }}
                     className="btn btn-primary mb-2"
                 >
-                    Submit
+                    { getStringByLanguage(language, 'submit') }
                 </button>
             </form>     
         </div>

@@ -15,10 +15,10 @@ test(`renders without error`, () => {
     expect(component.exists()).toBe(true)
 }) 
 
-test(`does not throw an warning with expected props`, () => {
-    //const spinner = findByTestAttr(wrapper, 'spinner')
-    //expect(spinner.exists()).toBe(loadingShows)
-}) 
+// test(`does not throw an warning with expected props`, () => {
+//     //const spinner = findByTestAttr(wrapper, 'spinner')
+//     //expect(spinner.exists()).toBe(loadingShows)
+// }) 
 
 test(`renders non-zero language icons`, () => {
     const wrapper = setup()
@@ -27,6 +27,10 @@ test(`renders non-zero language icons`, () => {
 }) 
 
 test(`calls setLanguage prop upn click`, () => {
-    //const spinner = findByTestAttr(wrapper, 'spinner')
-    //expect(spinner.exists()).toBe(loadingShows)
+    const wrapper = setup()
+    const languageIcons = findByTestAttr(wrapper, 'language-icon')
+    const firstIcon = languageIcons.first()
+    firstIcon.simulate('click')
+
+    expect(mockSetLanguage).toHaveBeenCalled()
 }) 

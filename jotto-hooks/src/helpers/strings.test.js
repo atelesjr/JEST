@@ -1,6 +1,6 @@
-import stringsModule from './strings'
+import getStringByLanguage from './strings'
 
-const  { getStringByLanguage } = stringsModule
+//const  { getStringByLanguage } = stringsModule
 
 const strings = {
     en: { submit: 'submit' },

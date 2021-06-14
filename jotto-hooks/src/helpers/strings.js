@@ -20,6 +20,7 @@ const languageStrings = {
   }
   
   function getStringByLanguage(languageCode, stringKey, strings=languageStrings) {
+    //console.log('getString', languageCode, stringKey)
     if (!strings[languageCode] || !strings[languageCode][stringKey]) {
       console.warn(`Could not get string [${stringKey}] for [${languageCode}]`);
   
@@ -31,7 +32,5 @@ const languageStrings = {
   }
   
   //or future mocking
-  export default {
-    getStringByLanguage,
-  }
+  export default getStringByLanguage 
   

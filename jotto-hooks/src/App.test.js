@@ -12,9 +12,7 @@ jest.mock('./Redux/actions')
 let wrapper
 
 const setup = () => {
-    return mount(
-        <App />
-    )
+    return mount(<App />)
 }
 
 describe.each([
@@ -30,7 +28,7 @@ describe.each([
 
             const mockUseReducer = jest.fn()
                 .mockReturnValue( [
-                    { secretWord },
+                    { secretWord, language: 'en' },
                     jest.fn()
                 ])
             React.useReducer = mockUseReducer

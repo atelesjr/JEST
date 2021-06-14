@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme'
+import React from 'react'
 import { findByTestAttr } from '../utils'
 import GuessedWords from './index'
 
@@ -68,6 +69,21 @@ describe('if there are words guessed', () => {
     
 })
 
-test('correct number of guessed word', () => {
+describe('languagePicker', () => {
+    test('correct render guess instructions string in English by default', () => {
+        const wrapper = setup({ guessedWords:[] })
+        const guessInstructions = findByTestAttr(wrapper, 'guess-instructions')
+        expect(guessInstructions.text()).toBe('Try to guess the secret word!')
+    });
+
+    test('correct render guess instructions string in emoji', () => {
+        const mockUseContext = jest.fn().mockReturnValue('emoji')
+        React.useContext = mockUseContext
+
+        const wrapper = setup({ guessedWords:[] })
+        const guessInstructions = findByTestAttr(wrapper, 'guess-instructions')
+        expect(guessInstructions.text()).toBe('🤔🤫🔤')
+    })
+    
     
 });

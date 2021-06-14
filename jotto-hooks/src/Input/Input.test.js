@@ -1,7 +1,7 @@
-import { shallow } from 'enzyme'
-import React from 'react'
+import { shallow, mount  } from 'enzyme'
 import { findByTestAttr } from '../utils'
 import Input from './index'
+import languageContext from '../contexts/language'
 
 const mockSetCurrentGuess = jest.fn()
 jest.mock('react', ()=> ({
@@ -9,12 +9,18 @@ jest.mock('react', ()=> ({
     useState: (initialState) => [ initialState, mockSetCurrentGuess]
 }))
 
-const setup = (success, secretWorld='party') => {
-    return shallow(
-        <Input 
-            secrectWorld={ secretWorld } 
-            success={ success }
-        />
+const setup = ({ language , success, secretWorld }) => {
+    language = language || 'en'
+    secretWorld = secretWorld || 'party'
+    success = success || false
+
+    return mount(
+        <languageContext.Provider value={ language }>
+            <Input 
+                secrectWorld={ secretWorld } 
+                success={ success }
+            />
+        </languageContext.Provider>
     )
 }
    
@@ -23,7 +29,7 @@ describe('render', () => {
         let wrapper
 
         beforeEach(()  =>{
-            wrapper = setup(true)
+            wrapper = setup({ success: true})
         })
         
 
@@ -48,7 +54,7 @@ describe('render', () => {
         let wrapper
         
         beforeEach(()  =>{
-            wrapper = setup(false)
+            wrapper = setup({ success: false})
         })
         
         test('renders without error', () => {
@@ -75,7 +81,7 @@ describe('state controlled input field', () => {
     let wrapper
     
     beforeEach(()  =>{
-        wrapper = setup(false)
+        wrapper = setup({})
     })
     
     afterEach(() => {
@@ -100,15 +106,19 @@ describe('state controlled input field', () => {
 
 })
 
-// describe('state', () => {
+describe('languagePicker', () => {
     
-//     test('state updates with value of input box upon change', () => {
-//         const wrapper = setup()
-//         const inputBox = findByTestAttr(wrapper, 'input-box')
-//         const mockEvent = { target: { value: 'train'}}
+    test('correctly renders submit string in english', () => {
+        const wrapper = setup({ language: 'en' })
+        const submitButton = findByTestAttr(wrapper, 'submit-button')
+        expect(submitButton.text()).toBe('Submit')
 
-//         inputBox.simulate("change", mockEvent)
-//         expect(mockSetCurrentGuess).toHaveBeenCalledWith("train")
-//     })   
+    })   
 
-// })
+    test('correctly renders submit string in emoji', () => {
+        const wrapper = setup({ language: 'emoji' })
+        const submitButton = findByTestAttr(wrapper, 'submit-button')
+        expect(submitButton.text()).toBe('🚀')
+    })   
+
+})
